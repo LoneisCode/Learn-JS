@@ -121,4 +121,87 @@ if(name)
 }else{
   console.log("You didnt enter name.");
 }
+
+//loops
+let myNum = 0;
+while(myNum <= 50){
+  console.log(myNum);
+  myNum++ ;
+}
+myNum =0;
+
+do{
+  myNum += 2;
+  console.log(myNum);
+}while(myNum < 50)
+for(let i=0; i < 10; i++)
+{console.log(i)};
+
+let name = "lone"
+for( let i = 0; i < name.length; i++){
+  console.log(name.charAt(i));
+}
+
+
+let counter = 0;
+let myLetter;
+while(true){
+myLetter = name[counter];
+console.log(myLetter)
+if(counter === 1){
+  counter += 2
+  continue;
+}
+if(myLetter === "e") break;
+counter++;
+}
+console.log(counter);
+
+//Functions 
+//Methods = Built-in Functions
+function sum(num1,num2){
+return num1 + num2 ;
+}
+console.log(sum(2,6));
+const getUserFromEmail = (email) => {
+  return email.slice(0, email.indexOf("@"));
+};
+
+console.log(getUserFromEmail("user@email.com"));
+
+const toProperCase = (noun) =>{
+  return noun.charAt(0).toUpperCase() + noun.slice(1).toLowerCase();
+}
+
+console.log(toProperCase("dAVeGHg"));
+*/
+//Scope: var, const, let
+/*
+var x =1 ; //used to be the main aand now is legacy 
+var x = 2 ; // doesnt throw error when re-defined
+console.log(x);
+
+/* throws error
+let y = 6;
+let y = 8;
+*/
+//both allow re-assignment thoe
+/*
+const v = 2;
+// v = 3 ; const doesnt allow for reassignment use this when ever you can. Use let when you have to reassign a variable.
+ */
+
+/*
+// global scope
+var x = 1;
+let y =2;
+const z =3;
+//local scope
+{
+  let y =4;
+}
+//local
+function myFunc(){
+  const z =5
+}
 */
