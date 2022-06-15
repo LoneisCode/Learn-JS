@@ -88,5 +88,37 @@ console.log(myName.charAt(Math.floor(Math.random() * myName.length) ));
     grade ="F";
   }
   //water fall
-*/
+
 //Switch Statement
+//check RPS.js
+
+// Conditionals Ternary Ops
+
+// condition ? ifTrue : ifFalse;
+let soup ;
+let response = soup ? "yes" : "No";
+console.log(response);
+//we can chain ops
+let isBanned = true;
+let soupAccess = isBanned? "Cant soup" : soup? `yes we have ${soup}`: "no soup";
+console.log(soupAccess);
+
+// can save lines of code.
+let score = 89;
+let grade = score > 89 ?"A" : score >79 ? "B" : score > 69 ? "C" : score > 59 ? "D" : "F";
+console.log(grade);
+
+ 
+//User Input\\
+let myBool = confirm("Returns true or false");
+console.log(myBool);
+
+//?? checks if input is null called nullish
+let name = prompt("please enter name");
+if(name)
+{
+  console.log(name);
+}else{
+  console.log("You didnt enter name.");
+}
+*/
