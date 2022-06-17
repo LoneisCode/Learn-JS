@@ -191,6 +191,8 @@ const v = 2;
 // v = 3 ; const doesnt allow for reassignment use this when ever you can. Use let when you have to reassign a variable.
  */
 
+const { cardClasses } = require("@mui/material");
+
 /*
 // global scope
 var x = 1;
@@ -204,4 +206,114 @@ const z =3;
 function myFunc(){
   const z =5
 }
+
+// Arrays
+const myArray =[];
+myArray[0]="dave";
+myArray[1]=1001;
+myArray[2]=false;
+console.log(myArray);
+console.log(myArray.length);
+console.log(myArray[myArray.length - 1]);
+
+const lastItem =myArray.pop();
+console.log(lastItem);
+myArray.unshift(42); //moves 42 to front also returns new length of array.
+myArray.push("hey");//moves hey to back of list also returns new length of array.
+console.log(myArray);
+const firstItem = myArray.shift(); // removes from front 
+console.log(myArray); // with moving these elements they will move postions they are not static.
+
+delete myArray[1]; //this not suggested due to the postion still being occupied by undefined / empty.
+console.log(myArray);
+
+myArray.splice(1, 0, 42); //start , num of items to delete , replacement value
+console.log(myArray);
+
+const array = ["A","B","C", "D", "E" , "F"];
+const newArray = array.slice(2,5) ; //returns newArray and does not include end number
+console.log(newArray);
+//array.reverse(); //reverse array
+console.log(array);
+const newString = array.join(); //returns string of elements
+const new2 = newString.split(","); // returns array and split on delimiter.
+console.log(newString);
+console.log(new2);
+const array2 =["G","H", "I","J","K"];
+
+const array3 = array.concat(array2);
+console.log(array3);
+const array4 =[...array,...array2]; //spread opp
+console.log(array4);
+//2D
+
+//same as java look over it though.
+
+//objects
+const myObj = {name: "Dave"};
+const anotherObj ={
+  alive: true,
+  ans: 42,
+  hobbies: ["Eat", "Sleep", "Code"],
+  beverage:{
+    morning: "Coffee",
+    afternoon: "Tced Tea",
+  },
+  action: function(){return `time for ${this.beverage.morning} `},
+}
+//let found = anotherObj.hobbies.find((s)=> {return s === "Eat"})
+console.log(anotherObj.action());
+
+const vehicle ={
+  wheels: 4,
+  engine: function(){
+    return "Vroom";
+  },
+
+}
+const truck = Object.create(vehicle);
+truck.doors = 2;
+console.log(truck);
+console.log(truck.wheels);
+console.log(truck.engine());
+
+const car = Object.create(vehicle);
+car.doors = 4;
+car.engine = function (){return "whooosh"};
+console.log(car);
+const telsa = Object.create(car);
+telsa.engine = function(){return "bzzzzz"};
+console.log(telsa.engine());
+
+const goats ={
+  lyrics: "Wayne",
+  impact: "2Pac",
+  longevity: "Jay Z",
+  vocab: "Wu-Tang",
+  beats: "Dre",
+  comeback: "eninem",
+}
+console.log(Object.keys(goats));
+console.log(Object.values(goats));
+
+for (let keys in goats){
+  console.log(`On ${keys}, it's ${goats[keys]}!`);
+}
+// delete
+delete goats.comeback ;
+console.log(goats);
+
+//destructing
+const {beats : myVar, vocab: myVoc} = goats ;
+console.log(myVar);
+console.log(myVoc);
+//or 
+const {beats, vocab} =goats;
+console.log(beats);
+console.log(vocab);
+
+function sings({vocab}){return `${vocab} aint nun to f with`};
+console.log(sings(goats))
+
+//classes 18
 */
