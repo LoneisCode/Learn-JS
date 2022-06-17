@@ -190,9 +190,6 @@ let y = 8;
 const v = 2;
 // v = 3 ; const doesnt allow for reassignment use this when ever you can. Use let when you have to reassign a variable.
  */
-
-const { cardClasses } = require("@mui/material");
-
 /*
 // global scope
 var x = 1;
