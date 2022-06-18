@@ -313,4 +313,120 @@ function sings({vocab}){return `${vocab} aint nun to f with`};
 console.log(sings(goats))
 
 //classes 18
+
+
+class Pizza{
+  constructor(pizzaSize){
+    this._size = pizzaSize; // _ private indicator
+     this._crust = "original";
+     //this.type = pizzaType;
+     //this.toppings =[];
+  }
+  getCrust(){return this._crust;}
+  setCrust(setCrust){this._crust = setCrust;}
+  // can make this more reade by just making thm regular methods.
+  //getToppings(){return this.toppings;}
+  //setToppings(topping){this.toppings.push(topping);}
+  /* bake(){
+    console.log(`Baking a ${this.size} ${this.crust} ${this.type} crust pizza`);
+  } */
+
+//const myPizza = new Pizza("peperoni", "small");
+
+//myPizza.setToppings("suasage");
+//myPizza.setToppings("spinach");
+//console.log(myPizza.getToppings());
+//myPizza.bake();
+//creating child class
+/* class SpecialtyPizza extends Pizza{
+  constructor(pizzaSize){
+    super(pizzaSize);
+    this.type ="the works"
+  }
+  slice(){console.log(`Our ${this.type} ${this.size} pizza has 8 slices.`);}
+
+}
+const mySpecPizza = new SpecialtyPizza("med");
+mySpecPizza.slice(); 
+
+//factory function - this solves private varibles since it is a function the scope of these varibles is only in
+// the function and cannot be accesed anywhere else;
+function pizzaFactory(pizzaSlice){
+  const crust ="og";
+  const size = pizzaSlice;
+  return{
+    bake: () => console.log(`baking a ${size} ${crust} crust pizza.`)
+  };
+}
+const myPizza =pizzaFactory("small");
+myPizza.bake();
+myPizza.crust = "slim"; // impossible to change
+myPizza.bake();
+
+
+//classes now support public and private - support is limited but expected to grow.
+class Pizza{
+  crust = "orignal" ; //public
+  #sauce ="traditional"; // # - private
+  #size;
+  constructor(pizzaSize){
+    this.#size = pizzaSize;
+     //this.type = pizzaType;
+     //this.toppings =[];
+  }
+  getCrust(){return this._crust;}
+  setCrust(setCrust){this._crust = setCrust;}
+  hereYouGo(){
+    console.log(`heres your ${this.crust} ${this.#sauce} sauce ${this.#size} pizza`);
+  }
+} 
+const myPizza2 =new Pizza("large");
+myPizza2.hereYouGo();
+// console.log(myPizza2.#sauce); gives error: Private field '#sauce' must be declared in an enclosing class
+//console.log(myPizza2.sauce); shows undefined
+console.log(myPizza2.crust); /// is public so will display
+//Check canIuse.com to check support.
+
+//JSON - JavaScript Obj Notation
+const myObj ={
+  name: "Dave",
+  hobbies: ["eat","sleep","code"],
+  hello: function(){
+    console.log("hello!")
+  }
+};
+
+console.log(myObj);
+const sendJSON = JSON.stringify(myObj);
+console.log(sendJSON);// doesnt send functions
+console.log(typeof sendJSON);//now a string type
+const recvJASON = JSON.parse(sendJSON);
+console.log(recvJASON);//still no method but a typeof Obj
+
+// JS ERROR HANDLING cause it is too forgiveable
+"use strict"; //stuff must be defined
+//v = "Dave0"; --> refrence error
+//console.log(v);
+//Object..create(); -->sytnax error. cant be caught
+//type error const name = 0; name= 1;
+const makeError = () => {
+  try{
+    throw new Error("this is custom error!"); //generic error
+  }catch(err){
+    console.error(err.name); //err.name --> just the name .stack -> full .message -> just message
+    console.error(err.message);
+    console.error(err.stack);
+  }finally{
+    console.log("finally");
+  }//excutes no matter what
+
+};
+function customError(message){
+  this.name = "custom error";
+  this.message = message;
+  this.stack =`${this.name} : ${this.message}`;
+
+}
+makeError();
 */
+//DOM - document object model.
