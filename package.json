@@ -1,0 +1,19 @@
+{
+  "name": "learn-js",
+  "version": "1.0.0",
+  "description": "Learning Js threw a youtube video to get a base so react doesn't scramble my brain.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LoneisCode/Learn-JS.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LoneisCode/Learn-JS/issues"
+  },
+  "homepage": "https://github.com/LoneisCode/Learn-JS#readme"
+}
