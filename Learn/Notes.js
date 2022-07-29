@@ -430,3 +430,244 @@ function customError(message){
 makeError();
 */
 //DOM - document object model.
+//in other notes
+
+//Event Listeners
+//First  select element
+//Syntax: addEventListener(event, function, useCapture)
+
+//Syntax: removeEventlistener(event, function, useCapture)
+//event.target what was clicked or acted upon
+// EVENT readyStateChange is basically saying is the element ready or completed.
+// Event bubbling is when events go up the tree to add the event to other parent elements.
+// setting use capture to true flips bubbling to move inward,
+// event.stopPropagation() -> stops bubbling 
+// preventDefault() stops pages from reloading.
+
+/* //Web Storage API
+//Not apart of DOM
+// Avaailable to JS via the global variable: Window
+//Dont have to type window its implied.
+//window.alert("ok");
+//alert("ok");
+//alert(location);
+
+//window.localStorage -> saves to browser|| window.sessionStorage -> stores data only for session once clossed it is lost
+const myObj ={
+  name: "dave",
+  hobbies: ["eat","sleep", "code"],
+  logName: function(){
+    console.log(this.name);
+  }
+
+};
+const myArray = ["eat","sleep", "code"];
+localStorage.setItem("mySessionStore", JSON.stringify(myArray));
+const mySessionData = JSON.parse(localStorage.getItem("mySessionStore"));
+//localStorage.removeItem("")
+//localStorage.clear()
+//localStorage.key(0);
+//localStorage.length;
+console.log(mySessionData); //only storee string data such as JSON
+//Better to store data as JSON , remember wont keep Func tions.*/
+
+//Modules introduceds in ES6
+//Must have server running to use modules simple as live server also type attribute = "module". Auto activates defer auto loading DOM then JS
+//Applies strict mode in JS. 
+
+/* import playG from "./guitar.js";
+import {shredding as shred, plucking as fingerpicking} from "./guitar.js";  // can rename */
+
+/* console.log(playG());
+console.log(shred());
+console.log(fingerpicking()); */
+//----------------------------
+/* import * as Guitar from "./guitar.js";
+//console.log(Guitar.playG());// cant do this most use default through this method.
+console.log(Guitar.default);
+console.log(Guitar.shredding());
+console.log(Guitar.plucking());
+ */
+/* import user from "./users.js";
+const me = new user("email@email.com", "Dave");
+console.log(me);
+console.log(me.greeting()); */
+
+//High Order Function
+// A function that does one of the following *Takes one or more functions as arg or returns function as result
+// place holder data
+/* import {posts} from "./posts.js" ;
+
+//for each
+posts.forEach(post => {
+  console.log(post);
+});
+
+
+const filteredPosts = posts.filter(post =>{
+  return post.userId === 10;
+});
+console.log(filteredPosts);
+
+const mappedPosts = filteredPosts.map(post =>{
+  return post.id * 10;
+});
+console.log(mappedPosts);
+
+const reducedPostValue = mappedPosts.reduce((sum, post)=>{
+  return sum + post ;
+});
+console.log(reducedPostValue); */
+
+//Fetch API requires disscussion of Callbacks, Promises, thenables, and async/await.
+//Callbacks - functions that pass functions 
+
+/* function firstFunc( parameters, callback){
+  //dostuff
+  callback();
+}
+//AKA Callback Hell
+firstFunc(para, function(){
+  //do stuff
+  secondFunction(para, function(){
+    thirdFunction(para, function(){
+
+    })
+  })
+}) */
+//Promises
+//3 states: Pending, Fulfilled, Rejected -"You go ahead while i finish this up"
+/* const myPromise = new Promise((resolve, reject) =>{
+  const error =false;
+  if(!error){
+    resolve("yes! resolved promise");
+  }else {
+    reject("No! rejected promise");
+  }
+});
+
+/* console.log(myPromise);//Wont work because it doesnt give useful value only the state of the promise.
+
+myPromise.then(value=>{
+  console.log(value + 1);//gives value
+})
+.then(newValue =>{
+  console.log(newValue);
+})
+.catch(err =>{
+  console.error(err);// catches errors if any inside of chain.
+})
+ 
+const myNextPromise = new Promise((res, rej)=>{
+  setTimeout(function(){
+    res("myNextPromise resolve"); // after 3 seconds it will resolve
+  }, 3000);
+});
+
+myNextPromise.then(value =>{
+  console.log(value);
+});
+myPromise.then(value =>{ //this output first since we set a timer on the promise above. It caught up later to this promise.
+  console.log(value);
+}); 
+
+const users = fetch("http://jsonplaceholder.typicode.com/users");
+
+//pending
+console.log(users); // we attempted to log the value before it was ready.
+ const users = fetch("http://jsonplaceholder.typicode.com/users") // returns a promise
+  .then(response =>{
+    //console.log(response);// not data we can work with coming in as JSON
+    return response.json(); // returns a promise
+  })
+  .then(data=>{ // thenables can get out of hand as well
+    console.log(data); // cant take data out side of the block currently, but first (below)
+    data.forEach(user => {
+      console.log(user);
+    });
+  });
+  console.log(users); // pends a promise because it didnt wait for code above.
+  // Small note to self thenables are used to tell code to wait for above statements while promises are telling the script to keep running and code being worked on will catch up later.
+
+// Async/ Await very clean way to  do things above. Async/Await does these in back ground.
+// Another example
+const myUsers ={
+  userList:[]
+}
+
+const myCoolFunc = async ()=>{
+ const res = await fetch("http://jsonplaceholder.typicode.com/users"); // telling it to wait before what comes next.
+ const jsonUserData = await res.json(); // waiting for json data
+ //console.log(jsonUserData);
+ return jsonUserData; // To use await keyword must be in async function.
+}
+  //https://www.baeldung.com/cs/async-vs-multi-threading
+
+const anotherFunc = async ()=>{
+  const data = await myCoolFunc();
+  myUsers.userList = data ;
+  console.log(myUsers.userList); 
+}
+anotherFunc();
+//console.log(myUsers.userList); // with this we get a blank array due to another awaiting for cool to complete. JS doesnt wait and immediatley calls console.log().
+*/
+
+/* // workflow function
+// Below are my own experiments using the .map and foreach functions and capturing json data
+const myUsers ={
+  userList : [],
+  userEmails: []
+}
+const getUsers = async () =>{
+  const res = await fetch("http://jsonplaceholder.typicode.com/users");
+  const data = await res.json();
+  return data;
+}
+const collectUsers = async () => {
+  const users = await getUsers();
+    return myUsers.userList = users ;
+}
+const parseEmails = async ()=>{
+  const userData = await collectUsers();
+  console.log(userData);
+  myUsers.userEmails = userData.map(user=>{
+    return user.email ;
+  })
+  console.log(myUsers.userEmails);
+}
+parseEmails(); */
+
+/* //Reduction of calls in my own theory
+const myUsers ={
+  userList : [],
+  userEmails: []
+}
+const getUsers = async () =>{
+  const res = await fetch("http://jsonplaceholder.typicode.com/users");
+  const data = await res.json();
+  myUsers.userList = data;
+  myUsers.userEmails = myUsers.userList.map(user=>{
+    return user.email;
+  });
+  myUsers.userEmails.forEach(email =>{
+    console.log(email);
+  })
+}
+getUsers(); */
+
+//BACK To Dave
+const getUsers = async () =>{
+  const res = await fetch("http://jsonplaceholder.typicode.com/users");
+  const jsonUserData = await res.json();
+
+  const userEmailArray = jsonUserData.map( user=>{
+    return user.email;
+  });
+  console.log(userEmailArray);
+  postToWebPage(userEmailArray);
+}
+const postToWebPage = (data)=>{ //isnt async since it is inside of our async function because we arent await anything either.
+  console.log(data);
+}
+getAllUserEmails();
+//2nd parameter of fetch is a object
