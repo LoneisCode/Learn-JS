@@ -654,7 +654,7 @@ const getUsers = async () =>{
   })
 }
 getUsers(); */
-
+/* 
 //BACK To Dave
 const getUsers = async () =>{
   const res = await fetch("http://jsonplaceholder.typicode.com/users");
@@ -663,11 +663,86 @@ const getUsers = async () =>{
   const userEmailArray = jsonUserData.map( user=>{
     return user.email;
   });
-  console.log(userEmailArray);
   postToWebPage(userEmailArray);
 }
 const postToWebPage = (data)=>{ //isnt async since it is inside of our async function because we arent await anything either.
   console.log(data);
 }
-getAllUserEmails();
+//getUsers();
+
 //2nd parameter of fetch is a object
+const getDadJoke = async () =>{
+  const res = await fetch("https://icanhazdadjoke.com/", {
+    method: "GET", //get requesting
+    headers: {
+      Accept: "application/json" //we can define what we accept from the api. application/json will give json back with text/plain we git just text of the joke.
+      //many other parameeters
+    }
+  });
+  const jokeData = await res.json();
+  console.log(jokeData);
+}
+
+getDadJoke();
+
+const jokeObj ={
+  id:"1j67po6", 
+  joke:"Your not just lonely your lonely with your thoughts lol"
+}
+const postJoke = async (jokePosting) =>{
+  const res = await fetch("https://httpbin.org/post",{
+    method: "POST",
+    headers:{
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(jokePosting)
+  });// When dealing with apis you kmust go read there documentation for what headers and parameters they accept.
+  const jokres = await res.json() ;
+  console.log(jokres);
+}
+
+postJoke(jokeObj); 
+
+const requestJoke = async (firstname,lastname)=>{
+  const res = await fetch(`http://api.icndb.com/jokes/random?firstName=${firstname}&lastName=${lastname}&linitTo=[nerdy]`); //some apis require parameters here we can insert directly in url the & chains these parameters and the ? signifes where they start.
+  const jsonResponse = await res.json();
+  console.log(jsonResponse.value.joke); // can check documentation to see exactly what you want to respond with here its .value.
+}
+requestJoke("Clint", "Eastwood"); */
+
+//abstract into functions - maybe from form
+
+/* const getDataFromForm = ()=>{
+  const reqObj ={
+    firstname:"Lone",
+    lastname: "johns",
+    category: ["nerdy"]
+  };
+  return reqObj;
+}
+const buildReqURL =(reqData)=>{
+  return `http://api.icndb.com/jokes/random?firstName=${reqData.firstname}&lastName=${reqData.lastname}&linitTo=${reqData.category}`;
+}
+const requestJoke = async (url)=>{
+  const res = await fetch(url); 
+  const jsonResponse = await res.json();
+  const joke = jsonResponse.value.joke;
+  postJokeToPage(joke);
+}
+const postJokeToPage = (joke)=>{
+  console.log(joke) // here we might post to DOM
+}
+
+//Workflow  function - since non of them are linked in any way
+
+const processJokeFunction = async () =>{
+  const reqData = getDataFromForm();
+  const requrl = buildReqURL(reqData);
+  await requestJoke(requrl);
+  console.log("job finished");
+}
+
+processJokeFunction(); */
+
+//REGEX !!!!!!
+// regexr.com

@@ -88,6 +88,9 @@ var runningSum = function(nums) {
     return ans;
 };
 console.log(runningSum([1,2,3,4]));
+
+//can also be done with reduce
+
 //------------------------------------------------------------------------------------------\\
 /*
 You are given an m x n integer grid accounts where accounts[i][j] is the amount of money 
