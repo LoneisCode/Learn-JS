@@ -135,6 +135,104 @@ var maximumWealth = function(accounts) {
 };
 console.log(maximumWealth([[1,2,3],[3,2,1]]));
 
+var maxWealth = function(accounts) {
+    let max = 0;
+    for(let i = 0; i < accounts.length; i++){
+        
+        let temp = accounts[i].reduce((prev,curr)=>{
+            return prev + curr;
+        })
+        temp > max ? max = temp : max = max ;
+    }
+    return max;
+};
+console.log(maxWealth([[1,2,3],[3,2,1]]));
+
 //------------------------------------------------------------------------------------------\\
+/* Given an integer n, return a string array answer (1-indexed) where:
 
+answer[i] == "FizzBuzz" if i is divisible by 3 and 5.
+answer[i] == "Fizz" if i is divisible by 3.
+answer[i] == "Buzz" if i is divisible by 5.
+answer[i] == i (as a string) if none of the above conditions are true.
+ 
 
+Example 1:
+
+Input: n = 3
+Output: ["1","2","Fizz"]
+Example 2:
+
+Input: n = 5
+Output: ["1","2","Fizz","4","Buzz"]
+Example 3:
+
+Input: n = 15
+Output: ["1","2","Fizz","4","Buzz","Fizz","7","8","Fizz","Buzz","11","Fizz","13","14","FizzBuzz"] */
+
+//Naive
+var fizzBuzzNaive = function(n) {
+    arr =[];
+    for(let i = 1; i <= n ;i++){
+        if(i % 5 === 0 && i % 3 === 0){
+            arr.push("FizzBuzz");
+        }else if(i % 5 === 0){
+            arr.push("Buzz");
+        }else if(i % 3 === 0){
+            arr.push("Fizz");
+        }else{
+            arr.push(String(i));
+        }
+    
+    }
+    return arr;
+};
+
+//HashMap
+var fizzBuzz = function(n) {
+    const fizzBuzzHash = {3: "Fizz", 5:"Buzz"}
+    let results = [];
+    for(let i = 1; i <= n; i++){
+        
+        let currBuild = "";
+        
+        for(let keys in fizzBuzzHash){
+            if(i % keys === 0){
+                currBuild += fizzBuzzHash[keys];
+            }
+        }
+        if(currBuild === ""){
+            currBuild = (i).toString();
+        }
+        results.push(currBuild);
+    }
+    return results;
+};
+
+/**
+ * @param {string} ransomNote
+ * @param {string} magazine
+ * @return {boolean}
+ */
+ var canConstruct = function(ransomNote, magazine) {
+    const magazineMap = new Map() ;
+    //This is iterating and adding our magazine letters to hashmap
+    for(let i = 0; i < magazine.length; i++){
+        let letter = magazine.charAt(i);
+        //this is saying if a value exist increment if not set to 1.
+        magazineMap.set(letter, magazineMap.get(letter) + 1 || 1);
+    }
+    //this is check and incrementing the use of our letters in the hash. once letter is used up it is deleted.
+    for(let j =0; j < ransomNote.length; j++){
+        let reqLetter = ransomNote.charAt(j);
+        if(magazineMap.has(reqLetter)){
+            magazineMap.set(reqLetter, magazineMap.get(reqLetter) - 1);
+            if(magazineMap.get(reqLetter) === 0){
+                magazineMap.delete(reqLetter); 
+            }
+            
+        }
+        else{return false;}
+    }
+        return true;
+};
